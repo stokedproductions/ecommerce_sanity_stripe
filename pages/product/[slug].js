@@ -6,7 +6,7 @@ import { Product } from '../../components';
 import { useStateContext } from '../../context/StateContext';
 
 const ProductDetails = ({ product, products }) => {
-  const { image, name, details, price } = product;
+  const { image, name, subname, details, benifits, side_effects, suggested_use, price } = product;
   const [index, setIndex] = useState(0);
   const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
 
@@ -15,6 +15,10 @@ const ProductDetails = ({ product, products }) => {
 
     setShowCart(true);
   }
+
+  const benifitArray = benifits.split(', ');
+  console.log(benifitArray)
+  const benifitIcon = '✔️';
 
   return (
     <div>
@@ -37,6 +41,7 @@ const ProductDetails = ({ product, products }) => {
 
         <div className="product-detail-desc">
           <h1>{name}</h1>
+          <h2>{subname}</h2>
           <div className="reviews">
             <div>
               <AiFillStar />
@@ -49,9 +54,7 @@ const ProductDetails = ({ product, products }) => {
               (20)
             </p>
           </div>
-          <h4>Details: </h4>
-          <p>{details}</p>
-          <p className="price">${price}</p>
+          <p className="price">R{price}</p>
           <div className="quantity">
             <h3>Quantity:</h3>
             <p className="quantity-desc">
@@ -64,13 +67,22 @@ const ProductDetails = ({ product, products }) => {
             <button type="button" className="add-to-cart" onClick={() => onAdd(product, qty)}>Add to Cart</button>
             <button type="button" className="buy-now" onClick={handleBuyNow}>Buy Now</button>
           </div>
+          <h4 style={{marginTop: '20px'}}>Benifits:</h4>
+          <p> {benifitArray.map((bb) => (<p> {benifitIcon} {bb}</p>))}</p>
+          { benifitArray.forEach( b => (<p>{benifitIcon}</p>)) }
+          <h4 style={{marginTop: '20px'}}>Details: </h4>
+          <p>{details}</p>
+          <h4 style={{marginTop: '20px'}}>Suggested Use: </h4>
+          <p>{suggested_use}</p>
+          <h4 style={{marginTop: '20px'}}>Side Effects: </h4>
+          <p>{side_effects}</p>
         </div>
       </div>
 
       <div className="maylike-products-wrapper">
           <h2>You may also like</h2>
-          <div className="marquee">
-            <div className="maylike-products-container track">
+          <div className="">
+            <div className="maylike-products-container">
               {products.map((item) => (
                 <Product key={item._id} product={item} />
               ))}
