@@ -3,7 +3,7 @@ import React from 'react';
 import { client } from '../lib/client';
 import { Product, FooterBanner, HeroBanner } from '../components';
 
-const Home = ({ products, bannerData }) => (
+const Home = ({ bannerData, brandData, categoryData, products }) => (
   <div>
     {/* <HeroBanner heroBanner={bannerData.length && bannerData[0]}  /> */}
     <div className="products-heading">
@@ -19,18 +19,20 @@ const Home = ({ products, bannerData }) => (
 );
 
 export const getServerSideProps = async () => {
-  const query = `*[_type == "product"]{
+  const bannerQuery = '*[_type == "banner"]';
+  const bannerData = await client.fetch(bannerQuery);
+  const brandQuery = `*[_type == 'brand']{title, "slug": slug.current}`;
+  const brandData = await client.fetch(brandQuery);
+  const categoryQuery = `*[_type == 'category']{title, "slug": slug.current}`;
+  const categoryData = await client.fetch(categoryQuery);
+  const productQuery = `*[_type == "product"]{
     "brand": brand[]->{title, slug}, 
     "category": category[]->{title, slug},
     image, name, slug, price, _id
   }`;
-  const products = await client.fetch(query);
-
-  const bannerQuery = '*[_type == "banner"]';
-  const bannerData = await client.fetch(bannerQuery);
-
+  const products = await client.fetch(productQuery);
   return {
-    props: { products, bannerData }
+    props: { bannerData, brandData, categoryData, products }
   }
 }
 

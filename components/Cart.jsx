@@ -1,16 +1,41 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { AiOutlineMinus, AiOutlinePlus, AiOutlineLeft, AiOutlineShopping } from 'react-icons/ai';
 import { TiDeleteOutline } from 'react-icons/ti';
 import toast from 'react-hot-toast';
+
+import ReactWhatsapp from 'react-whatsapp';
 
 import { useStateContext } from '../context/StateContext';
 import { urlFor } from '../lib/client';
 import getStripe from '../lib/getStripe';
 
 const Cart = () => {
+  const shipping = 100;
   const cartRef = useRef();
   const { totalPrice, totalQuantities, cartItems, setShowCart, toggleCartItemQuanitity, onRemove } = useStateContext();
+
+  const [orderMessage, setOrderMessage] = useState();
+
+  useEffect(() => {
+    const setUpOrderMessage = () => {
+      if (cartItems) {
+        let itemsString = '';
+        cartItems.map(item => {
+          itemsString += `${item.quantity} x ${item.name} - R${item.price} = R${item.price*item.quantity}\n`
+        });
+        let messageStr = 'Hi, \nI would like to order: \n';
+        messageStr += `${itemsString}`;
+        messageStr += `Subtotal: R${totalPrice}.00 \n`; 
+        messageStr += `Shipping: R${shipping}.00 \n`;
+        messageStr += `------------------------------\n`;
+        messageStr += `Grand Total: R${totalPrice + shipping}.00 \n`;
+        messageStr += `------------------------------\n`;
+        setOrderMessage(messageStr);
+      }
+    }
+    setUpOrderMessage();
+  })
 
   const handleCheckout = async () => {
     const stripe = await getStripe();
@@ -67,7 +92,7 @@ const Cart = () => {
               <div className="item-desc">
                 <div className="flex top">
                   <h5>{item.name}</h5>
-                  <h4>${item.price}</h4>
+                  <h5>R{item.price}</h5>
                 </div>
                 <div className="flex bottom">
                   <div>
@@ -95,12 +120,17 @@ const Cart = () => {
           <div className="cart-bottom">
             <div className="total">
               <h3>Subtotal:</h3>
-              <h3>${totalPrice}</h3>
+              <h3>R{totalPrice}</h3>
             </div>
             <div className="btn-container">
-              <button type="button" className="btn" onClick={handleCheckout}>
+              <ReactWhatsapp number="+27645193026" message={orderMessage} className="btn">
+                  Complete Order on WhatsApp
+              </ReactWhatsapp>
+              {orderMessage}
+              {/* <button type="button" className="btn" onClick={handleCheckout}>
                 Pay with Stripe
-              </button>
+              </button> */}
+              
             </div>
           </div>
         )}

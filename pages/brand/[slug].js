@@ -4,8 +4,13 @@ import { client } from '../../lib/client';
 import { Product, FooterBanner, HeroBanner } from '../../components';
 
 function Brand({products}) {
+  const title = products.length ? products[0].brand[0].title : ''
   return (
     <>
+    <div className="products-heading">
+      <h2>All { title } Products:</h2>
+    </div>
+    
     <div className="products-container">
       {products?.map((product) => <Product key={product._id} product={product} />)}
     </div>
@@ -47,7 +52,6 @@ export const getStaticPaths = async () => {
     }
     `;
     const products = await client.fetch(productsQuery, { slug });
-    console.log({products});
     return {
       props: { products }
     }

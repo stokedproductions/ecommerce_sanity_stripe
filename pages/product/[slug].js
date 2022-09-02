@@ -17,7 +17,6 @@ const ProductDetails = ({ product, products }) => {
   }
 
   const benifitArray = benifits.split(', ');
-  console.log(benifitArray)
   const benifitIcon = '✔️';
 
   return (
@@ -122,10 +121,14 @@ export const getStaticProps = async ({ params: { slug }}) => {
   const product = await client.fetch(query);
   const products = await client.fetch(productsQuery);
 
-  console.log(product);
+  const brandQuery = `*[_type == 'brand']{title, "slug": slug.current}`;
+  const brandData = await client.fetch(brandQuery);
+
+  const categoryQuery = `*[_type == 'category']{title, "slug": slug.current}`;
+  const categoryData = await client.fetch(categoryQuery);
 
   return {
-    props: { products, product }
+    props: { products, product, brandData, categoryData }
   }
 }
 
