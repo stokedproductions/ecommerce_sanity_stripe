@@ -11,6 +11,7 @@ const Product = ({ product }) => {
   const handleBuyNow = () => {
     onAdd(product, qty);
     setShowCart(true);
+    // a comment to trigger redeploy
   }
 
   return (
