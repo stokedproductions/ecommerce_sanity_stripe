@@ -16,7 +16,7 @@ const ProductDetails = ({ product, products }) => {
     setShowCart(true);
   }
 
-  const benifitArray = benifits.split(', ');
+  const benifitArray = benifits ? benifits.split(' ') : [];
   const benifitIcon = '✔️';
 
   return (
@@ -41,7 +41,7 @@ const ProductDetails = ({ product, products }) => {
         <div className="product-detail-desc">
           <h1>{name}</h1>
           <h2>{subname}</h2>
-          <div className="reviews">
+          {/* <div className="reviews">
             <div>
               <AiFillStar />
               <AiFillStar />
@@ -52,7 +52,7 @@ const ProductDetails = ({ product, products }) => {
             <p>
               (20)
             </p>
-          </div>
+          </div> */}
           <p className="price">R{price}</p>
           <div className="quantity">
             <h3>Quantity:</h3>

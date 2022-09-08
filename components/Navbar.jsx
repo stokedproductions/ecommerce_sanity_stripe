@@ -5,7 +5,7 @@ import { AiOutlineShopping } from 'react-icons/ai'
 import { Cart } from './';
 import { useStateContext} from '../context/StateContext';
 
-import Logo from '../assets/anabolic-fitness.jpg';
+import Logo from '../assets/abLogo.png';
 import Image from 'next/image';
 
 const Navbar = () => {
