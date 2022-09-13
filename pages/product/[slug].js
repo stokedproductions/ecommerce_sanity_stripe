@@ -1,9 +1,28 @@
 import React, { useState } from 'react';
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import StarRatingComponent from 'react-star-rating-component';
 
 import { client, urlFor } from '../../lib/client';
 import { Product } from '../../components';
 import { useStateContext } from '../../context/StateContext';
+
+const BenifitItem = ({benifit}) => {
+  const benifitIcon = '✓';
+  return (
+    <>
+    <div style={{borderBottom: '4px solid #999999', width: 300, paddingBottom: 15}}>
+      <p style={{display: 'inline-block', paddingRight: 5, width: 150 }}>{benifitIcon} {benifit.name}:</p>  
+        <StarRatingComponent 
+          name={benifit.name} 
+          editing={false}
+          renderStarIcon={() => <span style={{fontSize:20}}>★</span>}
+          starColor={'#f02d34'}
+          starCount={5}
+          value={benifit.rating}/>
+    </div>
+    </> 
+  );
+};
 
 const ProductDetails = ({ product, products }) => {
   const { image, name, subname, details, benifits, side_effects, suggested_use, price } = product;
@@ -12,22 +31,20 @@ const ProductDetails = ({ product, products }) => {
 
   const handleBuyNow = () => {
     onAdd(product, qty);
-
     setShowCart(true);
   }
 
-  const benifitArray = benifits ? benifits.split(' ') : [];
-  const benifitIcon = '✔️';
+  const benifitArray = benifits ? benifits : [];
 
   return (
     <div>
       <div className="product-detail-container">
         <div>
           <div className="image-container">
-            <img src={urlFor(image && image[index])} className="product-detail-image" />
+            {image && <img src={urlFor(image && image[index])} className="product-detail-image" />}
           </div>
           <div className="small-images-container">
-            {image?.map((item, i) => (
+            {image && image.map((item, i) => (
               <img 
                 key={i}
                 src={urlFor(item)}
@@ -39,8 +56,8 @@ const ProductDetails = ({ product, products }) => {
         </div>
 
         <div className="product-detail-desc">
-          <h1>{name}</h1>
-          <h2>{subname}</h2>
+          <h1>{name ? name : ''}</h1>
+          <h2>{subname ? subname : ''}</h2>
           {/* <div className="reviews">
             <div>
               <AiFillStar />
@@ -66,15 +83,16 @@ const ProductDetails = ({ product, products }) => {
             <button type="button" className="add-to-cart" onClick={() => onAdd(product, qty)}>Add to Cart</button>
             <button type="button" className="buy-now" onClick={handleBuyNow}>Buy Now</button>
           </div>
-          <h4 style={{marginTop: '20px'}}>Benifits:</h4>
-          <p> {benifitArray.map((bb) => (<p> {benifitIcon} {bb}</p>))}</p>
-          { benifitArray.forEach( b => (<p>{benifitIcon}</p>)) }
+          {!!benifitArray.length && <h4 style={{marginTop: '20px'}}>Benifits:</h4>}
+            {benifitArray && benifitArray.map((bb) => (
+              <BenifitItem benifit={bb}/>)
+            )}
           <h4 style={{marginTop: '20px'}}>Details: </h4>
-          <p>{details}</p>
+          <p>{details ? details : ''}</p>
           <h4 style={{marginTop: '20px'}}>Suggested Use: </h4>
-          <p>{suggested_use}</p>
+          <p>{suggested_use ? suggested_use : ''}</p>
           <h4 style={{marginTop: '20px'}}>Side Effects: </h4>
-          <p>{side_effects}</p>
+          <p>{side_effects ? side_effects : ''}</p>
         </div>
       </div>
 
@@ -82,7 +100,7 @@ const ProductDetails = ({ product, products }) => {
           <h2>You may also like</h2>
           <div className="">
             <div className="maylike-products-container">
-              {products.map((item) => (
+              {products && products.map((item) => (
                 <Product key={item._id} product={item} />
               ))}
             </div>

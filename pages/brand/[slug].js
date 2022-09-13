@@ -8,11 +8,11 @@ function Brand({products}) {
   return (
     <>
     <div className="products-heading">
-      <h2>All { title } Products:</h2>
+      <h2>All { title ? title : '' } Products:</h2>
     </div>
     
     <div className="products-container">
-      {products?.map((product) => <Product key={product._id} product={product} />)}
+      {products && products.map((product) => <Product key={product._id} product={product} />)}
     </div>
     </>
   )

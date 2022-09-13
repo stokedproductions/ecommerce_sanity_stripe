@@ -9,10 +9,10 @@ function Brand({products}) {
   return (
     <>
     <div className="products-heading">
-      <h2>All { title }:</h2>
+      <h2>All { title ? title : '' }:</h2>
     </div>
     <div className="products-container">
-      {products?.map((product) => <Product key={product._id} product={product} />)}
+      {products && products.map((product) => <Product key={product._id} product={product} />)}
     </div>
     </>
   )

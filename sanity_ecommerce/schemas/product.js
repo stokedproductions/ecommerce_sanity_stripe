@@ -44,7 +44,12 @@ export default {
     {
       name: 'benifits',
       title: 'Benifits',
-      type: 'string',
+      type: 'array',
+      of: [
+        {
+          type: 'benifitObject',
+        }
+      ]
     },
     { 
       name: 'details',
@@ -70,7 +75,6 @@ export default {
           type: 'reference',
           to: [
             {type: 'brand'},
-            // etc
           ]
         }
       ]
@@ -91,3 +95,34 @@ export default {
     },
   ]
 }
+
+const options = ['Strength', 'Muscle Gain', 'Sexual Aid', 
+  'Fat/Water Loss', 'Side Effects', 'Keep Gains', 'Anti-Estrogen']
+  
+const benifitObject = {
+  name: 'benifitObject',
+  title: 'Product',
+  type: 'document',
+  fields: [
+    {
+      title: 'Benifit',
+      name: 'name',
+      type: 'string',
+      options: {
+        list: options,
+        layout: 'checkbox'
+      }
+    },
+    {
+      type: 'Rating',
+      name: 'rating',
+      type: 'number',
+    }
+  ],
+  initialValue: {
+    name: '',
+    rating: 0
+  }
+} 
+
+export {benifitObject};
