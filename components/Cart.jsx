@@ -5,6 +5,7 @@ import { TiDeleteOutline } from 'react-icons/ti';
 import toast from 'react-hot-toast';
 
 import ReactWhatsapp from 'react-whatsapp';
+import Logo from '../assets/abLogo.png';
 
 import { useStateContext } from '../context/StateContext';
 import { urlFor } from '../lib/client';
@@ -88,7 +89,8 @@ const Cart = () => {
         <div className="product-container">
           {cartItems.length >= 1 && cartItems.map((item) => (
             <div className="product" key={item._id}>
-              <img src={urlFor(item?.image[0])} className="cart-product-image" />
+              {item.image && <img src={urlFor(item.image[0])} className="cart-product-image" />}
+              {!item.image && <img src={Logo.src} className="cart-product-image" />}
               <div className="item-desc">
                 <div className="flex top">
                   <h5>{item.name}</h5>
@@ -119,18 +121,25 @@ const Cart = () => {
         {cartItems.length >= 1 && (
           <div className="cart-bottom">
             <div className="total">
-              <h3>Subtotal:</h3>
-              <h3>R{totalPrice}</h3>
+              <h3>Subtotal: R{totalPrice}</h3>
+              <h3>Shipping:</h3>
+              <h3>R{shipping}</h3>
+              <h3>Total</h3>
+              <h3>R{totalPrice+shipping}</h3>
+            </div>
+            <div className="checkoutNote">
+              <p>
+                You will redirect to WhatsApp to complete your order.
+              </p>
+              <p> 
+                Please send the automatically populated message
+                for your order to be submitted.
+              </p>
             </div>
             <div className="btn-container">
-              <ReactWhatsapp number="+27645193026" message={orderMessage} className="btn">
+              <ReactWhatsapp number="+27670338569" message={orderMessage} className="btn">
                   Complete Order on WhatsApp
               </ReactWhatsapp>
-              {orderMessage}
-              {/* <button type="button" className="btn" onClick={handleCheckout}>
-                Pay with Stripe
-              </button> */}
-              
             </div>
           </div>
         )}

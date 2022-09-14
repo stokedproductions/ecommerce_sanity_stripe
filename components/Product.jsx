@@ -4,9 +4,14 @@ import Link from 'next/link';
 import { urlFor } from '../lib/client';
 import { useStateContext } from '../context/StateContext';
 
+import Image from 'next/image';
+import Logo from '../assets/abLogo.png';
+// import kk from '../assets/abLogo.png';
+
 const Product = ({ product }) => {
   const { image, name, slug, price, brand, category } = product;
   const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
+  const LogoSRC = image ? urlFor(image && image[0]) : Logo.src;
 
   const handleBuyNow = () => {
     onAdd(product, qty);
@@ -19,8 +24,7 @@ const Product = ({ product }) => {
         <div className="product-card">
         <Link href={`/product/${slug.current}`}>
           <div>
-            <img 
-              src={image && urlFor(image && image[0])}
+            <img  src={LogoSRC}
               width={250}
               height={250}
               className="product-image"

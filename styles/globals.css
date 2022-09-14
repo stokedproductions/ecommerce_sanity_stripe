@@ -45,6 +45,7 @@ a {
 
 nav {
   font-family: monospace;
+  align-self: center;
 }
 
 ul {
@@ -52,6 +53,7 @@ ul {
   list-style: none;
   margin: 0;
   padding-left: 0;
+  align-self: center;
 }
 
 li {
@@ -178,16 +180,18 @@ ul li ul li {
   flex-wrap: wrap;
   justify-content: center;
   gap: 15px;
+  row-gap: 30px;
   margin-top: 20px;
   width: 100%;
 }
+
 .product-card{
- cursor: pointer;
+  cursor: pointer;
   transform: scale(1, 1);
   transition: transform 0.5s ease;
- color: #324d67;
-
+  color: #324d67;
 }
+
 .product-card:hover{
   transform: scale(1.1,1.1)
 }
@@ -415,9 +419,10 @@ text-align: end;
 }
 .product-container{
   margin-top: 15px;
+  margin-bottom: 20px;
   overflow: auto;
-max-height: 70vh;
-padding: 20px 10px;
+  max-height: 60vh;
+  padding: 20px 10px;
 }
 .product{
   display: flex;
@@ -434,7 +439,7 @@ padding: 20px 10px;
   display: flex;
   justify-content: space-between;
   width: 350px;
-   color: #324d67;
+  color: #324d67;
 
 }
 .item-desc .bottom{
@@ -449,10 +454,18 @@ padding: 20px 10px;
 .total{
   display: flex;
   justify-content: space-between;
+  border-bottom: 2px solid #324d67;
+  padding: 10px
 }
 .total h3{
-  font-size: 22px;
+  font-size: 18px;
 
+}
+.checkoutNote {
+  font-size: 15px;
+  text-align: center;
+  color: #324d67;
+  font-weight: bold;
 }
 .remove-item{
   font-size: 24px;
@@ -462,11 +475,12 @@ padding: 20px 10px;
   border: none;
 }
 .cart-bottom{
+  background: white;
   position: absolute;
   bottom: 12px;
-  right: 5px;
-width: 100%;
-padding: 30px 65px;
+  /* right: 5px; */
+  width: 100%;
+  padding: 10px 15px;
 
 }
 
