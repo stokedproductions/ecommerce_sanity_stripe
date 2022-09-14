@@ -93,7 +93,7 @@ const Cart = () => {
               {!item.image && <img src={Logo.src} className="cart-product-image" />}
               <div className="item-desc">
                 <div className="flex top">
-                  <h5>{item.name}</h5>
+                  <h5 className="cartItemName">{item.name}</h5>
                   <h5>R{item.price}</h5>
                 </div>
                 <div className="flex bottom">
@@ -122,10 +122,9 @@ const Cart = () => {
           <div className="cart-bottom">
             <div className="total">
               <h3>Subtotal: R{totalPrice}</h3>
-              <h3>Shipping:</h3>
-              <h3>R{shipping}</h3>
-              <h3>Total</h3>
-              <h3>R{totalPrice+shipping}</h3>
+              <h3>Shipping: R{shipping}</h3>
+              <h3>Total: R{totalPrice+shipping}</h3>
+              <h3></h3>
             </div>
             <div className="checkoutNote">
               <p>

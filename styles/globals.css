@@ -445,6 +445,10 @@ text-align: end;
 .item-desc .bottom{
   margin-top: 60px;
 }
+.cartItemName {
+  min-width: 70%;
+  text-wrap: 'wrap';
+}
 .flex h5{
   font-size: 24px;
 }
