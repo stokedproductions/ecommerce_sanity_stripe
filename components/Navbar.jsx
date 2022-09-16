@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <div className="navbar-container">
       <p className="logo">
-        <Link href="/"><Image src={Logo} width={150} height={113} /></Link>
+        <Link href="/"><Image src={Logo} width={100} height={75} /></Link>
       </p>
 
       <nav role="navigation">
