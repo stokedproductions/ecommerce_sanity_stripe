@@ -4,6 +4,7 @@ import { client } from '../lib/client';
 
 import { Layout } from '../components';
 import '../styles/globals.css';
+import '../styles/navigation.css';
 import { StateContext } from '../context/StateContext';
 
 function MyApp({ Component, pageProps, brandData, categoryData }) {

@@ -1,0 +1,170 @@
+.navigation {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 120px;
+    width: 100%;
+    padding: 0.5rem 0.8rem;
+    background-color: #fff;
+    color: black;
+    box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
+  }
+  
+  .brand-name {
+    text-decoration: none;
+    color: black;
+    font-size: 1.3rem;
+    margin-left: 1rem;
+  }
+  
+  .navigation-menu {
+    margin-left: auto;
+  }
+  
+  .navigation-menu ul {
+    display: flex;
+    padding: 0;
+  }
+  
+  .navigation-menu li {
+    list-style-type: none;
+    margin: 0 1rem;
+  }
+  
+  .navigation-menu li a {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+  }
+  
+  .hamburger {
+    border: 0;
+    height: 40px;
+    width: 40px;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background-color: #283b8b;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    transform: translateY(-50%);
+    display: none;
+  }
+  
+  .hamburger:hover {
+    background-color: #2642af;
+  }
+
+  
+  
+  @media screen and (max-width: 550px) {
+    .hamburger {
+      display: block;
+    }
+  
+    .navigation-menu ul {
+      flex-direction: column;
+      position: absolute;
+      top: 100px;
+      left: 0;
+      width: 100%;
+      height: calc(100vh-100px);
+      background-color: white;
+      border-top: 1px solid black;
+      display: none;
+      z-index: 999999;
+    }
+  
+    .navigation-menu li {
+      text-align: center;
+      margin: 0;
+    }
+  
+    .navigation-menu li a {
+      color: black;
+      width: 100%;
+      padding: 1.5rem 0;
+    }
+  
+    .navigation-menu li:hover {
+      background-color: #eee;
+    }
+  
+    .navigation-menu.expanded ul {
+      display: block;
+    }
+  }
+  
+
+  /* DESTOP DROPDOWN */
+  @media screen and (min-width: 551px) {
+
+    nav {
+      font-family: monospace;
+      align-self: center;
+    }
+    
+    ul {
+      background: white; 
+      list-style: none;
+      margin: 0;
+      padding-left: 0;
+      align-self: center;
+    }
+    
+    li {
+      color: #616161;
+      background: white; 
+      display: block;
+      float: left;
+      padding: 1rem;
+      position: relative;
+      text-decoration: none;
+      transition-duration: 0.5s;
+      font-weight: bold;
+    }
+      
+    li a {
+      color: #616161;
+    }
+    
+    li:hover,
+    li:focus-within {
+      background: white;
+      cursor: pointer;
+    }
+    
+    li:focus-within a {
+      outline: none;
+    }
+    
+    ul li ul {
+      background: white; 
+      visibility: hidden;
+      opacity: 0;
+      min-width: 5rem;
+      position: absolute;
+      transition: all 0.5s ease;
+      margin-top: 0.5rem;
+      left: 0;
+      display: none;
+    }
+    
+    ul li:hover > ul,
+    ul li:focus-within > ul,
+    ul li ul:hover,
+    ul li ul:focus {
+      visibility: visible;
+      opacity: 1;
+      display: block;
+      z-index: 999;
+      box-shadow: 0 5px 15px 2px #00000025;
+    }
+    
+    ul li ul li {
+      clear: both;
+      width: 100%;
+    }
+  }   
