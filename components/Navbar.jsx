@@ -16,7 +16,9 @@ const Navbar = () => {
   return (
     <nav className="navigation">
       <a href="/" className="brand-name">
-      <Link href="/"><Image src={Logo} width={100} height={75} /></Link>
+      {/* <Link href="/"> */}
+        <Image src={Logo} width={100} height={75} />
+        {/* </Link> */}
       </a>
       <button
         className="hamburger"

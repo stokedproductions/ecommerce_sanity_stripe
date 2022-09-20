@@ -22,6 +22,11 @@ export default {
       title: 'Sub Name',
       type: 'string',
     },
+    {
+      name: 'bestSelling',
+      title: 'Best Selling',
+      type: 'boolean'
+    },
     { 
       name: 'slug',
       title: 'Slug',

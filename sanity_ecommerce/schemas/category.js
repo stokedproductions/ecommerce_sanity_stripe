@@ -19,5 +19,15 @@ export default {
           auto: true
         }
       },
+      {
+        title: 'Category Square Image',
+        name: 'imageSquare',
+        type: 'image',
+      },
+      {
+        title: 'Category Wide Image',
+        name: 'imageWide',
+        type: 'image',
+      }
     ]
   }

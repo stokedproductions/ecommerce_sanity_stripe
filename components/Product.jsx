@@ -26,12 +26,12 @@ const Product = ({ product }) => {
         <Link href={`/product/${slug.current}`}>
           <div>
             <img  src={LogoSRC}
-              width={350}
-              height={350}
+              width={280}
+              height={280}
               className="product-image"
             />
             <p className="product-name">{name ? name : ''}</p>
-            <StarRatingComponent 
+            {/* <StarRatingComponent 
               className="star-shit"
               name={'rating'} 
               editing={false}
@@ -40,7 +40,7 @@ const Product = ({ product }) => {
               emptyStarColor={'#ccc'}
               starCount={5}
               value={0}
-              />
+              /> */}
             <p className="product-price">R{price ? price : ''}</p>
           </div>
         </Link>

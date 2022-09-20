@@ -113,7 +113,7 @@ a {
   column-gap: 50px;
   row-gap: 60px;
   margin: 20px auto;
-  width: 90%;
+  width: 95%;
   /* border: 1px solid yellow; */
 }
 
@@ -218,8 +218,10 @@ text-align: end;
 }
 .products-heading{
   text-align: center;
-  margin: 40px 0px;
- color: #324d67;
+  margin: 160px 0px 50px;
+  color: #fff;
+  background: black;
+  padding: 10px;
 
 }
 .products-heading h2{
@@ -589,7 +591,7 @@ text-align: end;
 
 .star-shit {
   margin: 5px 37%;
-  width: 25%;
+  width: 50%;
   /* border: 1px solid red; */
   text-align: center;
 }
@@ -616,16 +618,24 @@ text-align: end;
 
 }
 
-.maylike-products-wrapper{
+.maylike-products-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 120px;
+  width: 100%;
+  /* border: 3px dotted yellow; */
 }
+
 .maylike-products-wrapper h2{
+  display: flex;
   text-align: center;
   margin: 50px;
   color: #324d67;
 
   font-size: 28px;
 }
+
 .maylike-products-container{
   display: flex;
   justify-content: center;
@@ -633,7 +643,8 @@ text-align: end;
   margin-top: 20px;
   margin-left: 20px;
   width: 100%;
-  overflow: scroll;
+  /* overflow-x: scroll; */
+  /* border: 1px solid red; */
 }
 .max-qty{
   font-weight: 500;
@@ -834,4 +845,21 @@ margin-top: 160px;
   width: 300px;
   margin: auto;
 }
+}
+
+.see-more-button {
+  width: 300px;
+  border-radius: 10px;
+  background: black;
+  color: white;
+  padding: 20px;
+  font-size: 20px;
+  margin: 80px auto 20px;
+  text-align: center;
+  transition: transform .4s ease;
+}
+
+.see-more-button:hover {
+  transform: scale(1.1,1.1);
+  background: #00000080;
 }

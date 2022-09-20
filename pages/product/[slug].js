@@ -17,8 +17,11 @@ const BenifitItem = ({benifit}) => {
           editing={false}
           renderStarIcon={() => <span style={{fontSize:20}}>★</span>}
           starColor={'#f02d34'}
+          emptyStarColor={'#ccc'}
           starCount={5}
-          value={benifit.rating}/>
+          value={benifit.rating}
+          style={{paddingTop: 10}}
+        />
     </div>
     </> 
   );
@@ -87,24 +90,24 @@ const ProductDetails = ({ product, products }) => {
             {benifitArray && benifitArray.map((bb) => (
               <BenifitItem benifit={bb}/>)
             )}
-          <h4 style={{marginTop: '20px'}}>Details: </h4>
+          {details && <h4 style={{marginTop: '20px'}}>Details: </h4>}
           <p>{details ? details : ''}</p>
-          <h4 style={{marginTop: '20px'}}>Suggested Use: </h4>
+          {suggested_use && <h4 style={{marginTop: '20px'}}>Suggested Use: </h4>}
           <p>{suggested_use ? suggested_use : ''}</p>
-          <h4 style={{marginTop: '20px'}}>Side Effects: </h4>
+          {side_effects && <h4 style={{marginTop: '20px'}}>Side Effects: </h4>}
           <p>{side_effects ? side_effects : ''}</p>
         </div>
       </div>
 
       <div className="maylike-products-wrapper">
           <h2>You may also like</h2>
-          <div className="">
+          {/* <div className=""> */}
             <div className="maylike-products-container">
               {products && products.map((item) => (
                 <Product key={item._id} product={item} />
               ))}
             </div>
-          </div>
+          {/* </div> */}
       </div>
     </div>
   )
@@ -134,7 +137,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params: { slug }}) => {
   const query = `*[_type == "product" && slug.current == '${slug}'][0]`;
-  const productsQuery = '*[_type == "product"]'
+  const productsQuery = '*[_type == "product"][0..3]'
   
   const product = await client.fetch(query);
   const products = await client.fetch(productsQuery);
