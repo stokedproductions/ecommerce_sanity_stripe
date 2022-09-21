@@ -135,6 +135,8 @@ a {
 }
 
 .product-name{
+  width: 275px;
+  wrap: wrap;
   font-weight: 500;
   font-size: 17px;
   text-align: center;

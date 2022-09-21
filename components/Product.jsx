@@ -24,23 +24,13 @@ const Product = ({ product }) => {
     <div>
         <div className="product-card">
         <Link href={`/product/${slug.current}`}>
-          <div>
+          <div style={{minHeight: 370}}>
             <img  src={LogoSRC}
               width={280}
               height={280}
               className="product-image"
             />
             <p className="product-name">{name ? name : ''}</p>
-            {/* <StarRatingComponent 
-              className="star-shit"
-              name={'rating'} 
-              editing={false}
-              renderStarIcon={() => <span style={{fontSize:20}}>★</span>}
-              starColor={'#f02d34'}
-              emptyStarColor={'#ccc'}
-              starCount={5}
-              value={0}
-              /> */}
             <p className="product-price">R{price ? price : ''}</p>
           </div>
         </Link>

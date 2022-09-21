@@ -41,6 +41,11 @@ export default {
       title: 'Quantity',
       type: 'string',
     },
+    {
+      name: 'strength',
+      title: 'Strength',
+      type: 'string',
+    },
     { 
       name: 'price',
       title: 'Price',
