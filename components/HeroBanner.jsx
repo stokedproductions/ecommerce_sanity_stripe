@@ -37,7 +37,7 @@ const HeroBanner = ({ heroBanner }) => {
   return (
     <div className="hero-banner-container">
       {windowDimensions.width > 551 && <Image src={headerImage}  alt="header" className="hero-banner-image" />}
-      {windowDimensions.width < 551 && <Image src={mobileHeaderImage}  alt="header" className="hero-banner-image" />}
+      {windowDimensions.width < 551 && <Image src={headerImage}  alt="header" className="hero-banner-image" />}
     </div>
   )
 }
