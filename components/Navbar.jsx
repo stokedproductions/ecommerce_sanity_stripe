@@ -47,9 +47,9 @@ const Navbar = () => {
       >
         <ul>
           <li><a href='\'>Home</a></li>
-          {brands && (brands.map(brand => (
+          {/* {brands && (brands.map(brand => (
                  <li key={brand._id}><a href={`/brand/${brand.slug}`}>{brand.title}</a></li>
-               )))}
+               )))} */}
           {/* <li><a href="#">Brands</a>
              <ul className="dropdown" aria-label="submenu">
                {brands && (brands.map(brand => (
