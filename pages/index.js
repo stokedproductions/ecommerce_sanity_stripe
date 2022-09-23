@@ -50,12 +50,6 @@ const Home = ({products, productsByCategory}) => {
 };
 
 export const getServerSideProps = async ({req}) => {
-  // const bannerQuery = '*[_type == "banner"]';
-  // const bannerData = await client.fetch(bannerQuery);
-  // const brandQuery = `*[_type == 'brand']{title, "slug": slug.current}`;
-  // const brandData = await client.fetch(brandQuery);
-  // const categoryQuery = `*[_type == 'category']{title, "slug": slug.current}`;
-  // const categoryData = await client.fetch(categoryQuery);
   const productQuery = `*[_type == "product"  && bestSelling==true]{
     "brand": brand[]->{title, slug}, 
     "category": category[]->{title, slug},
