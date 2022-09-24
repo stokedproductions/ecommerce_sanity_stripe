@@ -8,21 +8,21 @@ const CategoryCard = ({category}) => {
   const {products, imageWide } = category;
   const catImageUrl = imageWide ? urlFor(imageWide).url() : undefined;
   return (
-    <>
-    <div className="products-heading">
-      <h2>{ category.title}</h2>
-    </div>
-
-    <div className="products-container">
-      {products && products.map((product) => <Product key={product._id} product={product} />)}
-    </div>
-
-    <Link href={`/category/${category.slug.current}`}>
-      <div className="see-more-button">
-        <p>See All {category.title}</p>
+    <div>
+      <div className="products-heading">
+        <h2>{ category.title}</h2>
       </div>
-    </Link>
-    </>
+
+      <div className="products-container">
+        {products && products.map((product) => <Product key={product._id} product={product} />)}
+      </div>
+
+      <Link href={`/category/${category.slug.current}`}>
+        <div className="see-more-button">
+          <p>See All {category.title}</p>
+        </div>
+      </Link>
+    </div>
   );
 }
 
@@ -58,7 +58,7 @@ export const getServerSideProps = async ({req}) => {
     const products = await client.fetch(productQuery);
     
 
-     const productsByCategoryQuery = `*[_type == 'category']{
+     const productsByCategoryQuery = `*[_type == 'category']| order(displayOrder asc){
       _id,
       _type,
       slug,

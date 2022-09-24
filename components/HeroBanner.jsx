@@ -31,13 +31,9 @@ const HeroBanner = ({ heroBanner }) => {
       return () => window.removeEventListener('resize', handleResize);
     }
   }, [hasWindow]);
-
-  console.log(windowDimensions.width < 551)
-
   return (
     <div className="hero-banner-container">
-      {windowDimensions.width > 551 && <Image src={headerImage}  alt="header" className="hero-banner-image" />}
-      {windowDimensions.width < 551 && <Image src={headerImage}  alt="header" className="hero-banner-image" />}
+      <Image layout='responsive' width={1920} height={489} src={headerImage}  alt="header" className="hero-banner-image" />
     </div>
   )
 }

@@ -65,7 +65,12 @@ a {
   font-size: 20px;
 }
 .cartButton {
-  order: 1;
+  order: 0;
+  margin: 5px 10px;
+  align-self: center;
+  background: white;
+  padding: 10px 15px;
+  border-radius: 50%;
 }
 .item.button {
   order: 2;
@@ -185,6 +190,9 @@ a {
   }
   .submenu-active {
       border-radius: 0;
+  }
+  .cartButton {
+    order: 1;
   }
 }
 

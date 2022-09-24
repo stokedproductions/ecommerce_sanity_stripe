@@ -28,6 +28,11 @@ export default {
         title: 'Category Wide Image',
         name: 'imageWide',
         type: 'image',
+      },
+      {
+        title: 'Display Order',
+        name: 'displayOrder',
+        type: 'number',
       }
     ]
   }

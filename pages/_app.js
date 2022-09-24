@@ -6,8 +6,7 @@ import '../styles/globals.css';
 import '../styles/navigation.css';
 import { StateContext } from '../context/StateContext';
 
-function MyApp({ Component, pageProps, prop1, prop2 }) {
-  console.log({prop1, prop2})
+function MyApp({ Component, pageProps }) {
   return (
     <StateContext>
       <Layout>
