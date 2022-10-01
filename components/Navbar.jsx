@@ -51,7 +51,7 @@ const Navbar = () => {
       
         <ul className={isNavExpanded ? "menu active" : "menu"}>
         <li className="logo"><a href="/"><Image src={Logo} width={100} height={75} /></a></li>
-            <li className="item"><a href="#">Home</a></li>
+            <li className="item"><a href="/">Home</a></li>
             {/* <li className="item"><a href="#">Brands</a></li> */}
             <li className="item has-submenu" ref={submenuOneRef}>
                 <a tabIndex="0" onClick={() => setIsSubMenuOneExpanded(!isSubMenuOneExpanded)}>

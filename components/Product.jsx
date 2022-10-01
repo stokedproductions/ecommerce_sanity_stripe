@@ -9,9 +9,9 @@ import Image from 'next/image';
 import Logo from '../assets/abLogo.png';
 // import kk from '../assets/abLogo.png';
 
-const Product = ({ product }) => {
+const Product = ({ product, small=false }) => {
   const { image, name, slug, price, brand, category } = product;
-  const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
+  const { qty, onAdd, setShowCart } = useStateContext();
   const LogoSRC = image ? urlFor(image && image[0]) : Logo.src;
 
   const handleBuyNow = () => {
@@ -26,8 +26,8 @@ const Product = ({ product }) => {
         <Link href={`/product/${slug.current}`}>
           <div style={{minHeight: 370}}>
             <img  src={LogoSRC}
-              width={280}
-              height={280}
+              width={small ? 245 : 280}
+              height={small ? 245 : 280}
               className="product-image"
             />
             <p className="product-name">{name ? name : ''}</p>

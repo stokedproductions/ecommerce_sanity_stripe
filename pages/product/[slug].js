@@ -6,6 +6,26 @@ import { client, urlFor } from '../../lib/client';
 import { Product } from '../../components';
 import { useStateContext } from '../../context/StateContext';
 
+const responsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 4
+  },
+  tablet: {
+    breakpoint: { max: 1023, min: 464 },
+    items: 2
+  },
+  mobile: {
+    breakpoint: { max: 463, min: 0 },
+    items: 1
+  }
+};
+
 const BenifitItem = ({benifit}) => {
   const benifitIcon = '✓';
   return (
@@ -42,7 +62,7 @@ const ProductDetails = ({ product, products }) => {
   return (
     <div>
       <div className="product-detail-container">
-        <div>
+        <div className="product-images-container">
           <div className="image-container">
             {image && <img src={urlFor(image && image[index])} className="product-detail-image" />}
           </div>
@@ -61,18 +81,6 @@ const ProductDetails = ({ product, products }) => {
         <div className="product-detail-desc">
           <h1>{name ? name : ''}</h1>
           <h2>{subname ? subname : ''}</h2>
-          {/* <div className="reviews">
-            <div>
-              <AiFillStar />
-              <AiFillStar />
-              <AiFillStar />
-              <AiFillStar />
-              <AiOutlineStar />
-            </div>
-            <p>
-              (20)
-            </p>
-          </div> */}
           <p className="price">R{price}</p>
           <div className="quantity">
             <h3>Quantity:</h3>
@@ -100,14 +108,13 @@ const ProductDetails = ({ product, products }) => {
       </div>
 
       <div className="maylike-products-wrapper">
-          <h2>You may also like</h2>
-          {/* <div className=""> */}
+          <h2 className="products-heading">You may also like</h2>
+
             <div className="maylike-products-container">
               {products && products.map((item) => (
                 <Product key={item._id} product={item} />
               ))}
             </div>
-          {/* </div> */}
       </div>
     </div>
   )

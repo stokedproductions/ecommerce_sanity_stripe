@@ -7,7 +7,7 @@
   margin: 0;
 }
 nav {
-  background: #222;
+  background: #000;
   padding: 15px 15px;
   overflow: auto;
   display: flex;
@@ -110,10 +110,11 @@ a {
 }
 
 /* Tablet menu */
-@media all and (min-width: 700px) {
+@media all and (min-width: 700px) and (max-width: 959) {
   .menu {
       justify-content: flex-end;
       padding-right: 20px;
+      border: 1px solid red;
   }
   .logo {
       flex: 1;
@@ -160,7 +161,6 @@ a {
       flex-wrap: nowrap;
       background: none;
       overflow: visible;
-      /* height: 200px; */
   }
   .logo {
       order: 0;
@@ -174,14 +174,12 @@ a {
   .button {
       order: 2;
   }
-  .submenu-active .submenu {
-      display: block;
+  .submenu-active, .submenu {
+      display: absolute;
       position: absolute;
-      left: 0;
-      top: 68px;
+      top: 100px;
       background: #111;
       list-style-type: none;
-      /* margin-top: 0.5rem; */
       position: fixed;
       z-index:100;
   }

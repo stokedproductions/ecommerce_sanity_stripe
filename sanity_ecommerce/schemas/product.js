@@ -31,6 +31,7 @@ export default {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
+      validation: (Rule) => Rule.required(),
       options: {
         source: 'name',
         maxLength: 90,
@@ -103,7 +104,14 @@ export default {
         }
       ]
     },
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'name',
+      subtitle: 'slug.current',
+      media: 'image.0'
+    }
+  }
 }
 
 const options = ['Strength', 'Muscle Gain', 'Sexual Aid', 
