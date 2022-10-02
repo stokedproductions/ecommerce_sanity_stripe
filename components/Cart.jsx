@@ -29,34 +29,14 @@ const Cart = () => {
         messageStr += `${itemsString}`;
         messageStr += `Subtotal: R${totalPrice}.00 \n`; 
         messageStr += `Shipping: R${shipping}.00 \n`;
-        messageStr += `------------------------------\n`;
+        // messageStr += `------------------------------\n`;
         messageStr += `Grand Total: R${totalPrice + shipping}.00 \n`;
-        messageStr += `------------------------------\n`;
+        // messageStr += `------------------------------\n`;
         setOrderMessage(messageStr);
       }
     }
     setUpOrderMessage();
-  })
-
-  const handleCheckout = async () => {
-    const stripe = await getStripe();
-
-    const response = await fetch('/api/stripe', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(cartItems),
-    });
-
-    if(response.statusCode === 500) return;
-    
-    const data = await response.json();
-
-    toast.loading('Redirecting...');
-
-    stripe.redirectToCheckout({ sessionId: data.id });
-  }
+  }, [cartItems]);
 
   return (
     <div className="cart-wrapper" ref={cartRef}>

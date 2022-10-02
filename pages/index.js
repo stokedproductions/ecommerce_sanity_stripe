@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+
+import { client } from '../lib/client';
+import { Product } from '../components';
 
 import { urlFor } from '../lib/client';
 
@@ -25,44 +28,45 @@ const responsive = {
   },
   mobile: {
     breakpoint: { max: 463, min: 0 },
-    items: 3
+    items: 1
   }
 };
 
 
-import { client } from '../lib/client';
-import { Product, FooterBanner, HeroBanner } from '../components';
-
 const CategoryCard = ({category}) => {
   const {products, imageWide } = category;
   const catImageUrl = imageWide ? urlFor(imageWide).url() : undefined;
+
+  const [cardIsOpen, setCardIsOpen] = useState(true);
   return (
     <div>
-      <div className="products-heading">
-        <h2>{ category.title}</h2>
+      <div className="products-heading" onClick={() => setCardIsOpen(!cardIsOpen)}>
+        <h2>
+          {category.title}
+        </h2>
       </div>
+      { cardIsOpen &&
+        <div>
+            <div className="products-container">
+              {products && products.map((product) => <Product key={product._id} product={product} />)}
+            </div>
 
-      <div className="products-container">
-        {products && products.map((product) => <Product key={product._id} product={product} />)}
-      </div>
-
-      <Link href={`/category/${category.slug.current}`}>
-        <div className="see-more-button">
-          <p>See All {category.title}</p>
+            <Link href={`/category/${category.slug.current}`}>
+              <div className="see-more-button">
+                <p>See All {category.title}</p>
+              </div>
+            </Link>
         </div>
-      </Link>
+      }
     </div>
   );
 }
 
 const Home = ({products, productsByCategory, brandData}) => {
-
-  console.log(brandData)
-
   return (
   <div>
       <div style={{margin: '70px auto 0', display: 'flex', justifyContent: 'center'}}>
-        <Image src={FastDelieveryImage} width={900} height={400}  />
+        <Image src={FastDelieveryImage} width={900} height={400} />
       </div>
 
 
@@ -83,13 +87,12 @@ const Home = ({products, productsByCategory, brandData}) => {
           customTransition="all .5"
           transitionDuration={1000}
           containerClass="carousel-container"
-          removeArrowOnDeviceType={["tablet", "mobile"]}
+          removeArrowOnDeviceType={[]}
           // deviceType={this.props.deviceType}
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-40-px"
         >
             {brandData.map(brand => {
-              console.log(brand)
               return (
               brand.image &&  
                 <div key={brand._id}>
@@ -98,6 +101,7 @@ const Home = ({products, productsByCategory, brandData}) => {
                       width={200}
                       height={200}
                       className="product-image"
+                      style={{cursor: 'pointer'}}
                       src={brand.image ? urlFor(brand.image).url() : ''} />
                   </Link>
                 </div>

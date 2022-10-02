@@ -30,17 +30,19 @@ const BenifitItem = ({benifit}) => {
   const benifitIcon = '✓';
   return (
     <>
-    <div style={{borderBottom: '4px solid #999999', width: 300, paddingBottom: 15}}>
-      <p style={{display: 'inline-block', paddingRight: 5, width: 150 }}>{benifitIcon} {benifit.name}:</p>  
+    <div style={{borderBottom: '4px solid #999999', width: 300, 
+        paddingTop: 15, paddingBottom: 15, 
+        display: 'flex', alignItems: 'center',
+        }}>
+      <p style={{paddingRight: 5, width: 150}}>{benifitIcon} {benifit.name}:</p>  
         <StarRatingComponent 
           name={benifit.name} 
           editing={false}
-          renderStarIcon={() => <span style={{fontSize:20}}>★</span>}
+          renderStarIcon={() => <span style={{fontSize:25}}>★</span>}
           starColor={'#f02d34'}
           emptyStarColor={'#ccc'}
           starCount={5}
           value={benifit.rating}
-          style={{paddingTop: 10}}
         />
     </div>
     </> 
@@ -94,9 +96,9 @@ const ProductDetails = ({ product, products }) => {
             <button type="button" className="add-to-cart" onClick={() => onAdd(product, qty)}>Add to Cart</button>
             <button type="button" className="buy-now" onClick={handleBuyNow}>Buy Now</button>
           </div>
-          {!!benifitArray.length && <h4 style={{marginTop: '20px'}}>Benifits:</h4>}
-            {benifitArray && benifitArray.map((bb) => (
-              <BenifitItem benifit={bb}/>)
+          {!!benifitArray.length && <h4 style={{marginTop: '50px'}}>Benifits:</h4>}
+            {benifitArray && benifitArray.map((bb, index) => (
+              <BenifitItem key={index} benifit={bb}/>)
             )}
           {details && <h4 style={{marginTop: '20px'}}>Details: </h4>}
           <p>{details ? details : ''}</p>
